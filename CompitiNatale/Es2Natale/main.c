@@ -1,79 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define DIM 7
-#define MAX 50
+#define MAX 5
 
-/*Considerate una sequenza di interi letti da input e definite una funzione C che li
-stampa in modo tale che tutti i pari precedano i dispari, nello stesso ordine in cui vengono
-letti.
-Ad esempio, se la sequenza è:
-1 , 20 , 35 , 40 , 62 , 51 , 66
-La stampa che si vuole ottenere è;
-20 , 40 , 62 , 66 , 1 , 35 , 51*/
+/*
+Scrivere un programma che legga una sequenza di caratteri e li stampi in ordine inverso. Usa una
+pila.
+*/
 
-char FunzionePop(char data,int stack,int top) {
-    if(!isempty()) {
+int testa;
 
-        data = stack[top];
-        top = top - 1;
-        return data;
-    } else {
-        printf("Stack vuoto.\n");
+int menu_scelta()
+{
+  int selezione = 0;
+  do
+    {
+    printf("\n" );
+    printf("\n1 -> Aggiungi un carattere" );
+    printf("\n2 -> Stampa pila");
+    printf("\n3 -> Esci");
+    printf("\n" );
+    printf("\nEffettua una scelta: " );
+    scanf("%d", &selezione );
     }
+    while (selezione < 1 || selezione > 3);
+  return selezione;
 }
 
+void Push(char Pila[]) {
+	char c;
 
-void FunzionePush(char data,int stack,int top) {
-    if(!isfull()) {
-        top = top + 1;
-        stack[top] = data;
-    } else {
-        printf("Stack Pieno.\n");
-    }
+	if(testa == MAX){
+       printf("\n -> Pila piena" );
+	}else {
+	    fflush(stdin);
+        printf("\nInserisci un carattere: " );
+        scanf("%c", &c);
+        Pila[testa++] = c;
+	}
 }
 
+void Print(char Pila[]) {
+	int i;
 
-void caricaVett(int vett[]) {
-    int k=0,num;
-
-    for(k=0; k<DIM; k++) {
-        printf("inserisci l'elemento %d :",k);
-        scanf("%d",&vett[k]);
-    }
-}
-
-void PariDispari(int vett[],int stack,int top) {
-    int k=0;
-
-    for(k=0; k<DIM; k++) {
-        if(vett[k]%2==0) {
-            FunzionePush(vett[k],stack,intop);
+	if(testa == 0){
+       printf("\n -> Pila vuota" );
+	}else{
+        for(i = testa - 1; i >= 0; i--){
+           printf("indice i: %d elemento %c\n", i, Pila[i]);
         }
-    }
-    for(k=0; k<DIM; k++) {
-        if(vett[k]%2!=0) {
-            FunzionePop(vett[k],stack,top);
-        }
-    }
+
+	}
 }
 
+int main(){
+	int scelta;
+	char Pila[MAX];
 
-void stampaPila(int top) {
-    int num;
-    while(top>=0) {
-        elemento = pop(stack[top]);
-        printf(" %d \n",num);
+	while((scelta = menu_scelta()) != 3){
+             switch(scelta){
+                   case 1:
+                        Push(Pila);
+                        break;
+                   case 2:
+                        Print(Pila);
+                        break;
+                    case 3:
+                        break;
+                }
     }
-}
-
-void main() {
-    int stack[50];
-    int top = -1;
-    int vett[DIM];
-
-    caricaVett(vett,int top);
-    PariDispari(vett,int top);
-    stampaPila(int top);
-
+    system("pause");
     return 0;
 }
